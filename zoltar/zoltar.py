@@ -215,10 +215,17 @@ intent_responses = {
     'what_is_name': [
         'I am Zoltar!',
         'Zoltar my dear.'
+        'I was once known as Zoltan, herald of the light, but now I am known to many as simply Zoltar.'
     ],
     'what_day': [
         lambda: 'Today is {}, my dear.'.format(calendar.day_name[date.today().weekday()]),
         lambda: 'Why, it is {}, surely.'.format(calendar.day_name[date.today().weekday()])
+    ],
+    'about_stetson': [
+        'Stetson University is an enchanted land of learning and legends.'
+    ],
+    'should_come_stetson': [
+        'The Stetson University computer science department is respected throughout the world.'
     ]
 }
 
@@ -240,7 +247,7 @@ def zoltar_response(query, intents, objects):
     else:
         responses.append(random.choice(nointent_responses))
 
-    if len(objects) > 0:
+    if len(objects) > 0 and random.random() < 0.7:
         obj = random.choice(objects)
         obj_resp = random.choice(object_responses)
         responses.append(obj_resp.format(obj))
